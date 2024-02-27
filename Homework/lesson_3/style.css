@@ -1,0 +1,24 @@
+.product-card {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 20px 0;
+}
+
+.product-title {
+    color: #232323;
+
+    font-size: 24pt;
+}
+
+.product-title::first-letter {
+    text-transform: uppercase;
+}
+
+.product-image {
+    height: 200px;
+}
