@@ -83,6 +83,8 @@ let coursesArray = [
         modules: ['html', 'css', 'js', 'mysql', 'mongodb', 'react', 'angular', 'aws', 'docker', 'git', 'sass']
     }
 ];
+
+
 let courses = [
     {
         title: 'JavaScript Complex',
