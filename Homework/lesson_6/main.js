@@ -1,4 +1,4 @@
-// - Знайти та вивести довижину настипних стрінгових значень 'hello world', 'lorem ipsum', 'javascript is cool'
+// - Знайти та вивести довижину наступних стрінгових значень 'hello world', 'lorem ipsum', 'javascript is cool'
 let my_strings = ['hello world', 'lorem ipsum', 'javascript is cool'];
 for (let str of my_strings) {
     console.log(str.length);
@@ -21,7 +21,7 @@ for (let str of my_strings) {
 
 // - Є "брудна" стрінга let str = ' dirty string   ' . Почистити її від зайвих пробілів.
 let str = ' dirty string   ';
-str = str.replaceAll(' ', '');
+str = str.substring(str.indexOf(' ') + 1, str.indexOf(' ', 7));
 console.log(str);
 
 
