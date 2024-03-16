@@ -1,0 +1,102 @@
+.item {
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading {
+    color: White;
+}
+
+.description {
+    width: 250px;
+    text-align: center;
+    color: gold;
+}
+
+.simpsons-container {
+    background-color: darkgray;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.member {
+    height: fit-content;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    color: brown;
+}
+
+.simp_photo {
+    height: 300px;
+    object-fit: cover;
+}
+
+
+.main-container {
+    background-color: cornsilk;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    height: 450px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background-color: lightblue;
+    color: #232323;
+    border: deepskyblue solid 4px;
+    border-radius: 10px;
+    margin: 10px
+}
+
+.container-title, .container-modules {
+    width: 90%;
+    background-color: cornsilk;
+    border: deepskyblue solid 4px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.container-title {
+    text-align: center;
+}
+
+.container-description {
+    width: 90%;
+
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-description>p {
+    width: 70%;
+    background-color: cornsilk;
+    color: #232323;
+    border: deepskyblue solid 4px;
+    border-radius: 10px;
+    padding: 10px 0;
+}
+
+.container-description>p:first-child {
+    width: 25%;
+}
