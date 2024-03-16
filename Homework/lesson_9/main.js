@@ -36,7 +36,7 @@ my_ul.style.fontSize = '20pt';
 for (let each of my_arr) {
     let my_li = document.createElement('li');
     my_li.innerText = each;
-    my_ul.append(my_li);
+    my_ul.appendChild(my_li);
 }
 document.body.appendChild(my_ul);
 
@@ -76,7 +76,7 @@ for (let each of coursesAndDurationArray) {
     let my_p = document.createElement('p');
     my_p.innerText = "Duration: " + each.monthDuration + " month";
     my_container.append(my_h2, my_p);
-    my_div_2.append(my_container);
+    my_div_2.appendChild(my_container);
 }
 document.body.appendChild(my_div_2);
 
@@ -116,7 +116,7 @@ for (let each of coursesAndDurationArray) {
     my_p.classList.add('description');
 
     my_container.append(my_h1, my_p);
-    my_div_3.append(my_container);
+    my_div_3.appendChild(my_container);
 }
 document.body.appendChild(my_div_3);
 
@@ -189,15 +189,15 @@ for (let course of coursesArray) {
     my_div_3.classList.add('container-modules');
 
     let my_ul = document.createElement('ul');
-    my_div_3.append(my_ul);
+    my_div_3.appendChild(my_ul);
 
     for (let module of course.modules) {
         let my_li = document.createElement('li');
         my_li.innerText = module;
-        my_ul.append(my_li);
+        my_ul.appendChild(my_li);
     }
 
     my_div_1.append(my_h2, my_div_2, my_div_3);
-    my_div_5.append(my_div_1);
+    my_div_5.appendChild(my_div_1);
 }
 document.body.appendChild(my_div_5);
