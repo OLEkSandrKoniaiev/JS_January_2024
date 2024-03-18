@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homework_10_1</title>
+</head>
+<body>
+<!--Створити форму з трьома полями для name,surname,age та кнопкою. При натисканні на кнопку зчитати данні з полів,
+та вивести об'єкт в документ. Іншими словами : заповнити форму, натиснули кнопку, під формою з'явився блок з вашим
+об'єктом-->
+
+<form id="f1">
+    <input type="text" placeholder="Your name" name="userName">
+    <input type="text" placeholder="Your surname" name="userSurname">
+    <input type="text" placeholder="Your age" name="userAge">
+    <button>Send</button>
+</form>
+
+<div id="output">
+
+</div>
+
+<script>
+    let output = document.getElementById('output');
+
+    if (output) {
+        f1.onsubmit = function (ev) {
+            ev.preventDefault();
+            let user = {
+                name: this.userName.value,
+                surname: this.userSurname.value,
+                age: this.userAge.value
+            };
+            let p = document.createElement('p');
+            p.innerText = user.name + ' ' + user.surname + ' Age: ' + user.age;
+            output.appendChild(p);
+        }
+    } else {
+        console.error("Element with name 'output' not found!");
+    }
+
+</script>
+
+</body>
+</html>

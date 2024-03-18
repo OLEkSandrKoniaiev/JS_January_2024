@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homework_10_5</title>
+    <style>
+        #task-5-1 {
+            margin-bottom: 50px;
+        }
+
+        #f1 {
+            margin-bottom: 50px;
+        }
+
+        table, th, td {
+            border:1px solid black;
+        }
+
+        table {
+            margin-bottom: 10px;
+        }
+
+        td {
+            padding: 4px 8px;
+        }
+    </style>
+</head>
+<body>
+<!-- - Створити довільний елемент з id = text та створити кнопку.Використовуючи JavaScript, зробіть так, щоб при натисканні на кнопку зникав елемент з id="text".-->
+
+<!-- - створити інпут який приймає вік людини та кнопку яка підтверджує дію.При натисканні на кнопку зчитати інформацію з інпуту та перевірити вік чи менше він ніж 18, та повідомити про це користувача-->
+
+<!--*** Створити 3 інпута та кнопку. Один визначає кількість рядків, другий - кількість комірок, третій вмиіст комірок.-->
+<!--При натисканні кнопки, вся ця інформація зчитується і формується табличка, з відповідним вмістом.-->
+<!--(Додатковачастина для завдання)-->
+
+<div id="task-5-1">
+    <p id="text">Мене необхідно видалити</p>
+    <button id="task-5-1-button">Тиць</button>
+</div>
+
+<form id="f1">
+    <input type="text" placeholder="Введіть свій вік" name="userAge">
+    <button>Send</button>
+</form>
+
+<form id="f2">
+    <input type="text" placeholder="Введіть кількість рядків" name="rowNum">
+    <input type="text" placeholder="Введіть кількість комірок" name="colNum">
+    <input type="text" placeholder="Введіть вміст комірок" name="content">
+    <button>Send</button>
+</form>
+
+<script>
+    let task_5_1 = document.getElementById('task-5-1');
+    let task_5_1_text = document.getElementById('text');
+    let task_5_1_button = document.getElementById('task-5-1-button');
+
+    task_5_1_button.onclick = function () {
+        task_5_1.removeChild(task_5_1_text);
+    }
+</script>
+
+<script>
+    let f1 = document.getElementById('f1');
+
+    f1.onsubmit = function (ev) {
+        ev.preventDefault();
+        let userAge = parseInt(f1.userAge.value);
+        let p = document.createElement('p');
+        if (userAge >= 18) {
+            p.innerText = "Ви повнолітній";
+        }
+        else {
+            p.innerText = "Ви неповнолітній";
+        }
+        f1.appendChild(p);
+    }
+</script>
+
+<script>
+    let f2 = document.getElementById('f2');
+
+    f2.onsubmit = function (ev) {
+        ev.preventDefault();
+        let rowNum = parseInt(f2.rowNum.value);
+        let colNum = parseInt(f2.colNum.value);
+        let content = f2.content.value;
+        let table = document.createElement('table');
+        for (let i = 0, k = 0; i < rowNum; i++) {
+            let tr = document.createElement('tr');
+            table.appendChild(tr);
+            for (let j = 0; j < colNum; j++, k++) {
+                let td = document.createElement('td');
+                td.innerText = content[k] || '';
+                tr.appendChild(td);
+            }
+        }
+        f2.appendChild(table);
+    }
+</script>
+
+</body>
+</html>

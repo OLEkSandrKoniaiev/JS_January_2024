@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homework_10_4</title>
+    <style>
+        #output {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: azure;
+        }
+
+        #buttons-block {
+            display: flex;
+            justify-content: center;
+            gap: 400px;
+            background-color: darkgray;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<!--зробити масив на 100 об'єктів та дві кнопки prev next-->
+<!--при завантажені сторінки з'являються перші 10 об'єктів.-->
+<!--При натисканні next виводяться настпні 10 об'єктів-->
+<!--При натисканні prev виводяться попередні 10 об'єктів-->
+
+<div id="output"></div>
+<div id="buttons-block">
+    <button id="prev">prev</button>
+    <button id="next">next</button>
+</div>
+
+<script>
+    let output = document.getElementById('output');
+    let next = document.getElementById('next');
+    let prev = document.getElementById('prev');
+
+    let visor = 10;
+
+    let data = [];
+    for (let i = 0; i < 100; i++) {
+        let obj = {
+            id: i + 1,
+            name: `Object2340${i + 1}`
+        }
+        data.push(obj);
+    }
+
+    for (let i = 0; i < 10; i++) {
+        let p = document.createElement('p');
+        p.classList.add('output-paragraph');
+        p.innerText = data[i].id + '. ' + data[i].name;
+        output.appendChild(p);
+    }
+
+    next.onclick = function () {
+        if (visor >= 0 && visor <= 90) {
+            for (let i = 0; i < 10; i++) {
+                let p = document.getElementsByClassName('output-paragraph')[i];
+                p.innerText = data[visor + i].id + '. ' + data[visor + i].name;
+            }
+            visor += 10;
+        }
+    }
+
+    prev.onclick = function () {
+        if (visor >= 20 && visor <= 100) {
+            visor -= 10;
+            for (let i = 1, j = 9; i <= 10, j >= 0; i++, j--) {
+                let p = document.getElementsByClassName('output-paragraph')[j];
+                p.innerText = data[visor - i].id + '. ' + data[visor - i].name;
+            }
+        }
+    }
+
+</script>
+
+</body>
+</html>
+
+<!--Варіант скрипта зі змінною кількістю виведених об'єктів-->
+
+<!--let output = document.getElementById('output');-->
+<!--let next = document.getElementById('next');-->
+<!--let prev = document.getElementById('prev');-->
+
+<!--const OBJECTS_NUMBER = 8;-->
+<!--let visor = OBJECTS_NUMBER;-->
+
+<!--let data = [];-->
+<!--for (let i = 0; i < 100; i++) {-->
+<!--    let obj = {-->
+<!--        id: i + 1,-->
+<!--        name: `Object2340${i + 1}`-->
+<!--    }-->
+<!--    data.push(obj);-->
+<!--}-->
+
+<!--if (data.length % OBJECTS_NUMBER !== 0) {-->
+<!--    for (let i = 0; i < data.length % OBJECTS_NUMBER; i++) {-->
+<!--        let obj = {-->
+<!--            id: null,-->
+<!--            name: null-->
+<!--        }-->
+<!--        data.push(obj);-->
+<!--    }-->
+<!--}-->
+
+<!--for (let i = 0; i < OBJECTS_NUMBER; i++) {-->
+<!--    let p = document.createElement('p');-->
+<!--    p.classList.add('output-paragraph');-->
+<!--    p.innerText = data[i].id + '. ' + data[i].name;-->
+<!--    output.appendChild(p);-->
+<!--}-->
+
+<!--next.onclick = function () {-->
+<!--    if (visor >= 0 && visor <= data.length - OBJECTS_NUMBER) {-->
+<!--        for (let i = 0; i < OBJECTS_NUMBER; i++) {-->
+<!--            let p = document.getElementsByClassName('output-paragraph')[i];-->
+<!--            p.innerText = data[visor + i].id + '. ' + data[visor + i].name;-->
+<!--        }-->
+<!--        visor += OBJECTS_NUMBER;-->
+<!--    }-->
+<!--}-->
+
+<!--prev.onclick = function () {-->
+<!--    if (visor >= OBJECTS_NUMBER * 2 && visor <= data.length) {-->
+<!--        visor -= OBJECTS_NUMBER;-->
+<!--        for (let i = 1, j = OBJECTS_NUMBER - 1; i <= OBJECTS_NUMBER, j >= 0; i++, j&#45;&#45;) {-->
+<!--            let p = document.getElementsByClassName('output-paragraph')[j];-->
+<!--            p.innerText = data[visor - i].id + '. ' + data[visor - i].name;-->
+<!--        }-->
+<!--    }-->
+<!--}-->
