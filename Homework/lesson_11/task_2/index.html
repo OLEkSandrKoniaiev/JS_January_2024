@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homework_11_2</title>
+    <style>
+        .cart-div {
+            margin-bottom: 100px;
+        }
+
+        .img {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<!-- - взяти https://dummyjson.com/docs/recipes та вивести інформацію про всі рецепти. Інгредієнти повинні бути список під час відображення.-->
+
+<script>
+    fetch('https://dummyjson.com/recipes')
+        .then((res) => res.json())
+        .then((json) => {
+
+            let div = document.createElement('div');
+
+            json['recipes'].forEach(function (recipe) {
+                if (recipe.cuisine.toLowerCase() === 'russian') {
+                    recipe.cuisine = 'Ukrainian';
+                    recipe.name = recipe.name.replace(/russian/gi, 'Ukrainian');
+                    recipe.tags = recipe.tags.map(tag => tag.replace(/russian/gi, 'Ukrainian'));
+                    recipe.instructions = recipe.instructions.map(step => step.replace(/russian/gi, 'Ukrainian'));
+                }
+
+                let cart_div = document.createElement('div');
+                cart_div.classList.add('cart-div');
+
+                let h2 = document.createElement('h2');
+                h2.innerText = recipe.name + " " + recipe.cookTimeMinutes + 'min ' + recipe.rating + " stars";
+
+                let p = document.createElement('p');
+                p.innerText = "Cuisine: " + recipe.cuisine + "\nCcal:" + recipe.caloriesPerServing +
+                    '\nDifficulty: '
+                    + recipe.difficulty + '\n' + recipe.mealType;
+
+                let ul = document.createElement('ul');
+
+                for (let product of recipe.ingredients) {
+                    let li = document.createElement('li');
+                    li.innerText = product;
+
+                    ul.appendChild(li);
+                }
+
+                let img = document.createElement('img');
+                img.src = recipe.image;
+                img.classList.add('img');
+
+                let ol = document.createElement('ol');
+
+                for (let step of recipe.instructions) {
+                    let li = document.createElement('li');
+                    li.innerText = step;
+
+                    ol.appendChild(li);
+                }
+
+                cart_div.append(h2, p, ul, img, ol);
+                div.appendChild(cart_div);
+            })
+            document.body.appendChild(div);
+        });
+</script>
+</body>
+</html>

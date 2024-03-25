@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homework_11_1</title>
+    <style>
+        .cart-div {
+            margin-bottom: 100px;
+        }
+
+        .img {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<!-- - взяти https://dummyjson.com/docs/carts та вивести інформацію про всі корзини. Відобразити всі поля кожної корзини.-->
+<script>
+    fetch('https://dummyjson.com/carts')
+        .then((res) => res.json())
+        .then((json) => {
+
+            let div = document.createElement('div');
+            console.log(json);
+
+            json['carts'].forEach(function (cart) {
+
+                let cart_div = document.createElement('div');
+                cart_div.classList.add('cart-div');
+
+                let h2 = document.createElement('h2');
+                h2.innerText = 'Cart №' + cart.id + ' of user №' + cart.userId;
+
+                let p = document.createElement('p');
+                p.innerText = 'Total: ' + cart.total + '₴; Discounted total: ' + cart.discountedTotal + '₴.';
+
+                let ul = document.createElement('ul');
+
+                for (let product of cart.products) {
+                    let li = document.createElement('li');
+
+                    let img = document.createElement('img');
+                    img.src = product.thumbnail;
+                    img.classList.add('img');
+
+                    let p_1 = document.createElement('p');
+                    p_1.innerText = product.title + '; Quantity: ' + product.quantity;
+
+                    let p_2 = document.createElement('p');
+                    p_2.innerText = 'Total: ' + product.total + '₴; Discounted total: ' + product.discountedPrice + '₴.';
+
+                    li.append(img, p_1, p_2)
+                    ul.appendChild(li);
+                }
+
+                cart_div.append(h2, p, ul);
+                div.appendChild(cart_div);
+            })
+            document.body.appendChild(div);
+        });
+</script>
+
+</body>
+</html>

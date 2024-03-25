@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: #232323;
+        }
+
+        ul {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        li {
+            padding-left: 20px;
+        }
+
+        #back {
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+<a href="users.html" id="back">Go back</a>
+<script>
+    let url = new URL(window.location.href);
+    let userId = url.searchParams.get('id');
+
+    fetch(`http://jsonplaceholder.typicode.com/users/${userId}`)
+        .then(res => res.json())
+        .then((json) => {
+            let div = document.createElement('div');
+            let ul, li, p;
+
+            for (let key in json) {
+
+                if (typeof json[key] === 'object') {
+                    ul = document.createElement('ul');
+                    ul.innerText = `${key}:`;
+
+                    for (let subKey in json[key]) {
+
+                        if (typeof json[key][subKey] === 'object') {
+                            li = document.createElement('li');
+                            li.innerText = `${subKey}: `;
+                            let subUl = document.createElement('ul');
+
+                            for (let subSubKey in json[key][subKey]) {
+                                let subLi = document.createElement('li');
+                                subLi.innerText = `${subSubKey}: ${JSON.stringify(json[key][subKey][subSubKey])}`;
+                                subUl.appendChild(subLi);
+                            }
+
+                            li.appendChild(subUl);
+                            ul.appendChild(li);
+                        }
+                        else {
+                            li = document.createElement('li');
+                            li.innerText = `${subKey}: ${json[key][subKey]}`;
+                            ul.appendChild(li);
+                        }
+                    }
+                    div.appendChild(ul);
+                }
+                else {
+                    p = document.createElement('p');
+                    p.innerText = `${key}: ${json[key]}`;
+                    div.appendChild(p);
+                }
+            }
+            document.body.appendChild(div);
+        });
+</script>
+</body>
+</html>

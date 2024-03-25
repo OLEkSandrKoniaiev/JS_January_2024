@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homeworks_11_3</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+<!-- - зробити файл users.html-->
+<!--з ендпоінту http://jsonplaceholder.typicode.com/users отримати всіх користувачів-->
+<!--вивести їх id + name списком та додати посилання з href = user-details.html?id=XXX (замість ХХХ - айді юзера)-->
+<!--при кліку на посилання перехід на відповідну сторінку, на якій буде вся інформація про користувача (всі 15 полів)-->
+<!--отримана через додатковий запит (https://jsonplaceholder.typicode.com/users/XXX   де ХХХ - айді користувача)-->
+<script>
+    fetch('http://jsonplaceholder.typicode.com/users')
+        .then((res) => res.json())
+        .then((json) => {
+            let div = document.createElement('div');
+            let ul = document.createElement('ul');
+
+            for (let user of json) {
+                let li = document.createElement('li');
+                li.innerText = user.id + " " + user.name + " ";
+
+                let a = document.createElement('a');
+                a.innerText = "__click__";
+                a.href = `user-details.html?id=${user.id}`;
+
+                li.appendChild(a);
+                ul.appendChild(li);
+            }
+
+            div.appendChild(ul);
+            document.body.appendChild(div);
+        });
+</script>
+</body>
+</html>
